@@ -95,7 +95,7 @@ public class TaskManager
         switch (userChoise)
         {
             case "add" :
-                addTask();
+                addTasks();
                 break;
             case "remove" :
                 // obsluga executeRemoveChoise();
@@ -106,7 +106,7 @@ public class TaskManager
         }
     }
 
-    private static void addTask()
+    private static void addTasks()
     {
         try(FileWriter fileWriter = new FileWriter("tasks.csv", true))
         {
@@ -121,11 +121,12 @@ public class TaskManager
         {
             System.out.println(ex.getMessage() + "Can't write to file: ");
         }
-        loadTaskList();
     }
 
     private static void listTasks()
     {
+        loadTaskList();
+
         String separator = ConsoleColors.RED + "|---------------------------------------------------------------------------------------|" + ConsoleColors.RESET;
         System.out.println(ConsoleColors.YELLOW + "Current tasks: " + ConsoleColors.RESET);
 

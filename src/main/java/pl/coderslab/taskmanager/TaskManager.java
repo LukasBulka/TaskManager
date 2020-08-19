@@ -2,6 +2,8 @@ package pl.coderslab.taskmanager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -22,7 +24,7 @@ public class TaskManager
         while (true)
         {
             showMainMenu();
-            String userChoise = getUserChoise();
+            String userChoise = getUserInput();
             if (validateUserChoise(userChoise))
             {
                 executeValidChoise(userChoise);
@@ -74,7 +76,7 @@ public class TaskManager
     }
 
 
-    private static String getUserChoise()
+    private static String getUserInput()
     {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().trim();
@@ -93,7 +95,7 @@ public class TaskManager
         switch (userChoise)
         {
             case "add" :
-                // obsluga executeAddChoise();
+                addTask();
                 break;
             case "remove" :
                 // obsluga executeRemoveChoise();
@@ -102,6 +104,24 @@ public class TaskManager
                listTasks();
                 break;
         }
+    }
+
+    private static void addTask()
+    {
+        try(FileWriter fileWriter = new FileWriter("tasks.csv", true))
+        {
+            System.out.println("Please add task description: ");
+            fileWriter.append("\n" + getUserInput() + ", ");
+            System.out.println("Please add task due date: ");
+            fileWriter.append(getUserInput() + ", ");
+            System.out.println("Is your task important: true / false ");
+            fileWriter.append(getUserInput());
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage() + "Can't write to file: ");
+        }
+        loadTaskList();
     }
 
     private static void listTasks()
@@ -136,7 +156,7 @@ public class TaskManager
         System.out.println(ConsoleColors.RED + "|\t" + ConsoleColors.RESET + ConsoleColors.BLUE + "\tPlease select an option:" + ConsoleColors.RESET + ConsoleColors.RED + "                                                        |" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
         System.out.println("\t   [a] - add\t [r] - remove\t   [l] - list\t   [e] - exit");
-        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
+        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+" + ConsoleColors.RESET);
     }
 
     private static void showExitMessage()

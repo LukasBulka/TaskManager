@@ -1,11 +1,13 @@
 package pl.coderslab.taskmanager;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskManager
 {
-    private static String[][] taskList = new String[0][];
+    private static String[][] taskList;
 
     public static void main(String[] args)
     {
@@ -15,7 +17,7 @@ public class TaskManager
     public static void run()
     {
         showWelcomeMessage();
-        loadTaskListFromFile();
+        loadTaskList();
 
         while (true)
         {
@@ -36,15 +38,39 @@ public class TaskManager
         }
 
         showExitMessage();
-        saveTaskListFromFile();
+        saveTaskList();
     }
 
-    private static void saveTaskListFromFile() {
+    private static void saveTaskList() {
 
     }
 
-    private static void loadTaskListFromFile() {
+    private static void loadTaskList()
+    {
+        File fileToLoad = new File("tasks.csv");
+        String[] entries = new String[0];
 
+        try
+        {
+            Scanner scanner = new Scanner(fileToLoad);
+            while (scanner.hasNextLine())
+            {
+                entries = Arrays.copyOf(entries, entries.length + 1);
+                entries[entries.length - 1] = scanner.nextLine();    //   + "\n"
+
+            }
+            taskList = new String[entries.length][0];
+
+            for (int i = 0; i < entries.length; i++)
+            {
+                taskList[i] = entries[i].split(" ");
+
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println(ex.getMessage() + " Please check the file name.");
+        }
     }
 
 
@@ -73,8 +99,24 @@ public class TaskManager
                 // obsluga executeRemoveChoise();
                 break;
             case "list" :
-                // obsluga executeListChoise();
+               listTasks();
                 break;
+        }
+    }
+
+    private static void listTasks()
+    {
+        String separator = ConsoleColors.RED + "|---------------------------------------------------------------------------------------|" + ConsoleColors.RESET;
+        System.out.println(ConsoleColors.YELLOW + "Current tasks: " + ConsoleColors.RESET);
+
+        for (int i = 0; i < taskList.length; i++)
+        {
+            System.out.print("[" + (i + 1) + "] ");
+            for (int j = 0; j < taskList[i].length; j++)
+            {
+                System.out.print(taskList[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 
@@ -91,12 +133,10 @@ public class TaskManager
 
     private static void showMainMenu()
     {
-        System.out.println(ConsoleColors.BLUE + "Please select an option:");
-        System.out.print(ConsoleColors.RESET);
-        System.out.println("\tadd");
-        System.out.println("\tremove");
-        System.out.println("\tlist");
-        System.out.println("\texit");
+        System.out.println(ConsoleColors.RED + "|\t" + ConsoleColors.RESET + ConsoleColors.BLUE + "\tPlease select an option:" + ConsoleColors.RESET + ConsoleColors.RED + "                                                        |" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
+        System.out.println("\t   [a] - add\t [r] - remove\t   [l] - list\t   [e] - exit");
+        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
     }
 
     private static void showExitMessage()
@@ -107,7 +147,9 @@ public class TaskManager
 
     private static void showWelcomeMessage()
     {
-        System.out.println(ConsoleColors.RED + "WELCOME TO TASK MANAGER");
+        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
+        System.out.println(ConsoleColors.RED + "|                                 " + ConsoleColors.CYAN + "Welcome to TASK MANAGER" + ConsoleColors.RED + "                               |");
+        System.out.println(ConsoleColors.RED + "+---------------------------------------------------------------------------------------+");
         System.out.print(ConsoleColors.RESET);
     }
 }

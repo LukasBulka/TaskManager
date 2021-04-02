@@ -17,13 +17,13 @@ This console app allows you to manage your tasks by write and read data to a fil
 
 ## Demo
 1. Tasks list:
-![task list][task_list]  
+  ![task list][task_list]  
 1. Add task:
-![add task][add_task]
+  ![add task][add_task]
 1. Remove task:
-![remove task][remove_task]
+  ![remove task][remove_task]
 1. Exit: :) 
-![exit][exit]
+  ![exit][exit]
 
 [task_list]: images/taskList.png "Tasks list"
 [add_task]: images/addTask.png "Add task"

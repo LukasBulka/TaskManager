@@ -16,8 +16,6 @@ This console app allows you to manage your tasks by write and read data to a fil
 1. import/export task list from/to a file
 
 ## Demo
-
-## Demo
 1. Tasks list:
 ![task list][task_list]  
 1. Add task:

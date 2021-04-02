@@ -5,9 +5,9 @@ IT school workshop project. A simple application for tasks management.
 This app allows you to manage your tasks by write and read data to a file.
 
 ## Technologies and tools used
-*Java
-*InteliJ IDEA
-*text file :)
+* Java
+* InteliJ IDEA
+* text file :)
 
 ## Functionalities
 1. show the list of tasks

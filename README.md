@@ -2,7 +2,7 @@
 IT school workshop project. A simple application for tasks management.
 
 ## General purpose
-This app allows you to manage your tasks by write and read data to a file.
+This console app allows you to manage your tasks by write and read data to a file.
 
 ## Technologies and tools used
 * Java
@@ -14,3 +14,20 @@ This app allows you to manage your tasks by write and read data to a file.
 1. add tasks to a list
 1. remove tasks from list
 1. import/export task list from/to a file
+
+## Demo
+
+## Demo
+1. Tasks list:
+![task list][task_list]  
+1. Add task:
+![add task][add_task]
+1. Remove task:
+![remove task][remove_task]
+1. Exit: :) 
+![exit][exit]
+
+[task_list]: images/taskList.png "Tasks list"
+[add_task]: images/addTask.png "Add task"
+[remove task]: images/removeTask.png "Remove task"
+[exit]: images/exit.png "Exit"

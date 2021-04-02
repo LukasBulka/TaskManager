@@ -21,7 +21,7 @@ This console app allows you to manage your tasks by write and read data to a fil
 1. Add task:
   ![add task][add_task]
 1. Remove task:
-  ![remove task][remove_task]
+  ![remove_task][remove_task]
 1. Exit: :) 
   ![exit][exit]
 
